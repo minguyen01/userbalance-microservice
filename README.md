@@ -15,14 +15,11 @@ To Set Up the Database
 
 To Run the Web App using the Windows Command Line
 =================================================
-1) 
-Activate the virtual environment:
+1. Activate the virtual environment:
 venv\Scripts\activate.bat
 
-2)
-Set the FLASK_APP:
+2. Set the FLASK_APP:
 set FLASK_APP=microservice
 
-3)
-Run the microservice:
+3. Run the microservice:
 flask run
