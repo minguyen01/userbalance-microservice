@@ -4,8 +4,10 @@ from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from sqlalchemy.sql import func
 import enum
 
+# Replace the first '#' string with the master password
+# Replace the second '#' string with the name of the database
+DATABASE_URI = 'postgresql://postgres:########@localhost:5432/########'
 Base = declarative_base()
-DATABASE_URI = 'postgresql://postgres:32Q39Ci3@localhost:5432/USER-BALANCE'
 
 # The possible statuses that a transaction may have
 class transaction_status(enum.Enum):

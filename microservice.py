@@ -3,11 +3,6 @@ from flask import Flask, render_template, redirect, request, session, g, flash
 from sqlalchemy.orm import declarative_base
 from database import *
 
-# To run the web app in the search_app directory folder:
-#> venv\Scripts\activate
-#> set FLASK_APP=microservice
-#> flask run
-
 def create_app():
     # Initializes the application
     app = Flask(__name__)
