@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="USERBALANCE-MICROSERVICE">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>User Balances</title>
+</head>
+
+<body>
+    <header class="transaction-header">
+        <h2 class="transaction-name">Current User: {{session['user']}}</h2>
+    </header>
+
+    <div class="pad-top">
+        <h2 class="page">Current Page: {{session['page']}}</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Change Status</th>
+            </tr>
+            {% for i in session['transactions'].keys()|sort(reverse=True) %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{session['transactions'][i][0]}}</td>
+                <td>{{session['transactions'][i][1]}}</td>
+                <td>{{session['transactions'][i][2]}}</td>
+                <td>{{session['transactions'][i][3]}}</td>
+                {% if session['transactions'][i][3] == "PENDING" %}
+                <td>
+                    <form method="post">
+                        <input type="text" name="idsubmit" value={{i}} hidden>
+                        <input type="submit" name="submit" value="APPROVE">
+                        <input type="submit" name="submit" value="DECLINE">
+                    </form>
+                </td>
+                {% else %}
+                <td>
+                    Already Processed
+                </td>
+                {% endif %}
+            </tr>
+            {%endfor%}
+        </table>
+        <br>
+        <form method="post">
+            {% if session['page'] == 1 %}
+            <input class="transaction-input-submit-disabled margin-left" type="submit" name="submit" value="Previous Page" disabled="disabled">
+            {% else %}
+            <input class="transaction-input-submit margin-left" type="submit" name="submit" value="Previous Page">
+            {% endif %}
+            {% if session['transactions']|length < 10 %}
+            <input class="transaction-input-submit-disabled margin-left" type="submit" name="submit" value="Next Page" disabled="disabled">
+            {% else %}
+            <input class="transaction-input-submit margin-left" type="submit" name="submit" value="Next Page">
+            {% endif %}
+        </form>
+        <br>
+        <form method="post">
+            <input class="transaction-input-submit margin-left" type="submit" name="submit" value="Return To User">
+        </form>
+    </div>
+</body>
+
+</html>

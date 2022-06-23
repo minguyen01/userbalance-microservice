@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="USERBALANCE-MICROSERVICE">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>User Balances</title>
+</head>
+
+<body>
+    <header class="transaction-header">
+        <h2 class="transaction-name">Current User: {{session['user']}}</h2>
+    </header>
+    <div class="pad-top">
+        <form method="post">
+            <h2 class="transaction-text">Create a New Transaction</h2>
+            <input class="transaction-input-text" type="number" name="dollar" spellcheck="false" placeholder="[Type in Dollar]" min="0" required>
+            <input class="transaction-input-text" type="number" name="cent" spellcheck="false" placeholder="[Type in Cents]" min="0" max="99" required>
+            <input class="transaction-input-text" type="text" name="description" spellcheck="false" placeholder="[Type in Description]" required>
+            <br>
+            <input type="radio" id="charge" name="mode" value="CHARGE" required>
+            <label for="charge">CHARGE</label>
+            <input type="radio" id="deposit" name="mode" value="DEPOSIT" required>
+            <label for="deposit">DEPOSIT</label>
+            <br>
+            <br>
+            <input class="transaction-input-submit margin-left" type="submit" name="submit" value="Add Transaction">
+        </form>
+        <div class="inline-flex">
+            <form class="pad-right" method="post">
+                <h2 class="transaction-text">View Transactions</h2>
+                <input class="transaction-input-submit margin-left" type="submit" name="submit" value="View Transactions">
+            </form>
+            <form class="pad-left" method="post">
+                <h2 class="transaction-text">Return to Homepage</h2>
+                <input class="transaction-input-submit margin-left" type="submit" name="submit" value="Go to Homepage">
+            </form>
+        </div>
+        <br>
+        <br>
+        {%for message in get_flashed_messages()%}
+            <h2 class="message2">{{message}}</h2>
+        {%endfor%}
+    </div>
+</body>
+
+</html>

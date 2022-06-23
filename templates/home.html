@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="USERBALANCE-MICROSERVICE">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>User Balances</title>
+</head>
+
+<body>
+    <div class="homescreen-positioning">
+        <h1>User Balances</h1>
+        <form class="inline-flex" method="post">
+            <input class="home-input-text" type="text" name="adduser" spellcheck="false" placeholder="Add a User Here [Type in Username]" required>
+            <input class="home-input-submit" type="submit" name="submit" value="Add User">
+        </form>
+        <br>
+        <form class="inline-flex" method="post">
+            <input class="home-input-text" type="text" name="viewbalance" spellcheck="false" placeholder="View a User's Balance Here [Type in Username]" required>
+            <input class="home-input-submit" type="submit" name="submit" value="View Balance">
+        </form>
+        <br>
+        <form class="inline-flex" method="post">
+            <input class="home-input-text" type="text" name="viewuser" spellcheck="false" placeholder="Edit/View a User's Transactions Here [Type in Username]" required>
+            <input class="home-input-submit" type="submit" name="submit" value="Go To User">
+        </form>
+        <br>
+        {%for message in get_flashed_messages()%}
+            <h2 class="message">{{message}}</h2>
+        {%endfor%}
+    </div>
+    <footer>
+        <p class="credit">Created by: Minh Nguyen</p>
+    </footer>
+</body>
+
+</html>
